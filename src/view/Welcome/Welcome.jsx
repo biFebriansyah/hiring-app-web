@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import "./scss/welcome.scss";
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export class Welcome extends Component {
    render() {

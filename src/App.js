@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 import {BrowserRouter, Route} from 'react-router-dom';
-import "./scss/App.scss";
-import {ProtectedRoute} from './auth/protectRoute'
-import welcome from './componen/welcome/welcome';
-import Login from './componen/login/login';
-import Register from './componen/register/register';
-import ProfileEngineer from './componen/profile-engineer/ProfileEngineer'
-import Landing from './componen/landing/landing';
-import Engineer from './componen/regis-engineer/engineer'
+import {ProtectedRoute} from './auth/ProtectRoute'
+import Welcome from './view/Welcome/Welcome';
+import Login from './view/Login/Login';
+import Register from './view/Register/Register';
+import ProfileEngineer from './view/ProfileEngineer/ProfileEngineer'
+import Landing from './view/Landing/Landing';
+import RegisterEngineer from './view/RegisterEngineer/RegisterEngineer'
 
 class App extends Component {
    render() {
       return (
          <BrowserRouter>
-            <Route exact path="/" component={welcome} />
+            <Route exact path="/" component={Welcome} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/engineer" component={Engineer} />
+            <Route exact path="/engineer" component={RegisterEngineer} />
             <ProtectedRoute exact path="/profile" component={ProfileEngineer} />
             <ProtectedRoute exact path="/home" component={Landing} />
          </BrowserRouter>

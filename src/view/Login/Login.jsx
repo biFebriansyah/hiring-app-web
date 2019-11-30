@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import "./login.scss";
-import axios from 'axios'
-import auth from '../../auth/auth'
+import axios from 'axios';
+import auth from '../../auth/Auth';
 
 class Login extends Component {
 

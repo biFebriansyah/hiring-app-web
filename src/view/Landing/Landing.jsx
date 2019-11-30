@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Cards from '../../components/Cards/Cards'
 import './scss/landing.scss';
-import Cards from '../cards/cards';
 
 class Landing extends Component {
    constructor(props) {
