@@ -1,0 +1,103 @@
+$color : #fff;
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.Job {
+    margin-top: 5px;
+    // font-size: 0.8em;
+}
+
+// .Name {
+//     // font-size: 1.3em;
+// }
+
+.card-container {
+    margin-bottom: 1em;
+    border-radius: 20px;
+    overflow: hidden;
+    break-inside: avoid;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    // margin: 0 0 20px;
+    /* padding: 20px; */
+    // background: white;
+    // overflow: hidden;
+    // break-inside: avoid;
+    
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.box-content {
+    color: $color;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 1%;
+    width: 100%;
+    padding: 20px;
+    height: 48%;
+    transition: all 0.3s;
+
+    &:hover {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+    }
+}
+
+.box-icon {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.total-project {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    // font-size: 0.8em;
+
+    img {
+        width: 15px;
+        margin-right: 8px;
+    }
+}
+
+.succeses-project {
+    display: flex;
+    align-items: center;
+    // font-size: 0.8em;
+
+    img {
+        width: 15px;
+        margin-right: 8px;
+    }
+}
+
+.skill {
+    margin-top: 10px;
+    margin-bottom: 7px;
+    font-weight: 700;
+    // font-size: 0.8em;
+}
+
+.list-skill {
+    display: flex;
+    // font-size: 0.7em;
+
+    li {
+        margin-right: 5px;
+    }
+}

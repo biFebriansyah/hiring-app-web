@@ -1,0 +1,271 @@
+$font-color : #979797;
+$button-color :#0439D9;
+$border-color : #07038C;
+$input-color : #056CF2;
+$abuabu : rgb(160, 160, 160);
+$alret : #F20732;
+
+*, *::before, *::after {
+
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.center {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.theForm {
+    display: flex;
+    position: relative;
+    width: 60%;
+    padding: 40px 0;
+    // height: 90%;
+    border: 1px solid rgb(160, 160, 160);
+    border-radius: 10px;
+    flex-direction: column;
+    background-image: url("../img/undraw_fingerprint_swrc.png");
+    background-size: 400px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    box-shadow: 5px 5px 13px -9px #000000;
+}
+
+.theText {
+    // margin-top: 40px;
+    padding: 30px;
+    padding-bottom: 20px;
+
+    h1 {
+        color: $button-color;
+        font-size: 20px;
+    }
+    h3 {
+        color: $abuabu;
+        font-size: 14px;
+        margin-top: 24px;
+    }
+}
+
+form {
+    width: 60%;
+    padding: 0 30px;
+
+    .theInput {
+        position: relative;
+        max-width: 100%;
+
+        input {
+            width: 100%;
+            position: relative;
+            outline: none;
+            border: 1px solid $font-color;
+            border-radius: 4px;
+            height: 40px;
+            padding-left: 10px;
+            font-size : 15px;
+        }
+        
+        span {
+            font-size: 15px;
+            display: flex;
+            position: absolute;
+            align-items: center;
+            height: 40px;
+            top: 0;
+            left: 10px;
+            pointer-events: none;
+            color: $font-color;
+            transition: .3s;
+        }
+        
+        .spanChange {
+            border: 2px solid $input-color;
+        }
+        
+        .focus {
+            height: 3px;
+            top: -1px;
+            background: white;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+            color: $border-color;
+        }
+    }
+
+.focus + span {
+    height: 3px;
+    top: -1px;
+    background: white;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 1;
+    color: $border-color;
+}
+
+    .inputUsername {
+        margin-top: 25px;
+
+        .userInfo {
+            font-family: 'Roboto', sans-serif;
+            margin-top: 10px;
+            font-size: 10pt;
+            color: $font-color;
+        }
+    }
+
+    .nama {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .password {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .passInfo {
+        font-family: 'Roboto', sans-serif;
+        margin-top: 10px;
+        font-size: 10pt;
+        color: $font-color;
+    }
+
+    .button {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-family: 'Roboto mono', sans-serif;
+            font-size: 15px;
+            color: $input-color;
+        }
+
+        .daftar button {
+            border: 1px solid $input-color;
+            background: $input-color;
+            color: white;
+            width: 80px;
+            height: 34px;
+            border-radius: 4px;
+            font-size: 10pt;
+            font-weight: bold;
+            cursor: pointer;
+
+            &:hover {
+                background: $button-color;
+            }
+        }
+    }
+}
+
+.alret {
+    font-family: 'Roboto', sans-serif;
+    display: none;
+    color: $alret;
+    position: absolute;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.alretConf {
+    font-family: 'Roboto', sans-serif;
+    display: none;
+    color: $alret;
+    position: absolute;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.inputEmailCon {
+    margin-top: 10px;
+}
+
+// Select item
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+select {
+    border: none;
+    border-bottom: 1px solid grey;
+    outline: none;
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    -moz-appearance:button; /* Firefox */
+    -webkit-appearance:button; /* Safari and Chrome */
+    appearance:none;
+    appearance: none;
+    color: #979797;
+}
+
+.custom-select::before {
+    content: "\A";
+    position: absolute;
+    /* width: 20px;
+    height: 20px; */
+    display: inline-block;
+    top: 13px;
+    left: 90%;
+    width: 0; 
+    height: 0; 
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid $font-color;
+}
+
+@media (max-width: 1200px) {
+    .card-componen {
+        padding: 1em;
+        column-count: 3;
+    }
+}
+
+@media (max-width: 800px) {
+    .card-componen {
+        padding: 1em;
+        column-count: 3;
+    }
+}
+@media (max-width: 800px) {
+    .card-componen {
+        padding: 1em;
+        column-count: 3;
+    }
+}
+
+@media (max-width: 600px) {
+    .card-componen {
+        padding: 1em;
+        column-count: 2;
+    }
+}
+
+@media (max-width: 400px) {
+    .card-componen {
+        padding: 1em;
+        column-count: 1;
+    }
+}
