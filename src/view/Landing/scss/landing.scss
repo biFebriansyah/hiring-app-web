@@ -119,17 +119,20 @@
         &:hover {
             background: #DADADA;
         }
+        .acount-link {
 
         link {
             display: flex;
             align-items: center;
             width: 115px;
             justify-content: space-between;
+            color: black;
     
             h2 {
                 font-size: 18px;
                 color: #9B9B9B;
             }
+        }
         }
     }
 }

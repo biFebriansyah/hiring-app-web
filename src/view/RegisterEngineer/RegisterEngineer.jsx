@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./scss/engineer.scss";
 import heroImg from "./img/sample2.jpg";
+import axios from 'axios';
+import FormData from 'form-data';
 
 class Engineer extends Component {
    constructor(props) {
@@ -9,14 +11,14 @@ class Engineer extends Component {
       this.state = {
          files: null,
          imgSrc: heroImg,
+         username: '',
          userData: {
              name: '',
-             dob: null,
+             dob: '',
              skill: '',
              desc: '',
              git: '',
              location: '',
-             photo: null
          }
       };
 
@@ -29,8 +31,6 @@ class Engineer extends Component {
 
    inputChange(event) {
       const file = event.target.files[0];
-      console.log(event.target.name);
-
       if (file) {
          this.setState({ files: file });
          let reader = new FileReader();
@@ -42,6 +42,7 @@ class Engineer extends Component {
          };
          reader.readAsDataURL(file);
       }
+      this.handleChange(event)
       event.preventDefault();
    }
 
@@ -52,7 +53,7 @@ class Engineer extends Component {
         
         if (inputName === 'skill') {
             if (event.target.checked) {
-                let skilList = userData[inputName] + " " + inputValue
+                let skilList = inputValue + userData[inputName] + " "
                 console.log(skilList)
                 userData[inputName] = skilList
             }
@@ -68,9 +69,36 @@ class Engineer extends Component {
    }
 
    onSave(event) {
-      console.log("Files: ", this.state.files);
-      console.log("src: ", this.state.imgSrc);
-      event.preventDefault();
+    let userFrom = new FormData()
+    userFrom.append('username', this.props.match.params.username)
+    userFrom.append('name', this.state.userData.name);
+    userFrom.append('dob', this.state.userData.dob);
+    userFrom.append('skill', this.state.userData.skill);
+    userFrom.append('desc', this.state.userData.desc);
+    userFrom.append('git', this.state.userData.git);
+    userFrom.append('location', this.state.userData.location);
+    userFrom.append('photo', this.state.files, this.state.files.name);
+   //  console.log(userFrom);
+    axios({
+        method: 'post',
+        url: 'http://localhost:4000/engineer',
+        headers: {'content-type': 'multipart/form-data'},
+        data: userFrom
+     }).then(res => {
+        console.log(res.data)
+     }).catch(err => {
+        if (err.response) {
+           return console.log(err.response.data)
+        }
+        if (err.request) {
+           return console.log('error from request', err.request);
+        }
+        else {
+           console.log('unknown error')
+        }
+     })
+
+     event.preventDefault()
    }
 
    handleFile(event) {
@@ -130,7 +158,7 @@ class Engineer extends Component {
                      <input type="text" name="git" className="Engineer-git-input" placeholder="https://github.com/biFebriansyah/" onChange={this.handleChange}/>
                   </div>
                   <div className="Engineer-btn-save">
-                     <button onClick={this.onSave}>next</button>
+                     <button onClick={this.onSave}>Save</button>
                   </div>
                </div>
             </div>

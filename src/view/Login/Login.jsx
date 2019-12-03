@@ -31,8 +31,8 @@ class Login extends Component {
          data: this.state.users
 
       }).then(res => {
-         const result = res.data.result[0]
-         console.log(result)
+         // const result = res.data.result[0]
+         localStorage.setItem('login', true)
          auth.loginAuth(() => {
             this.setState({login: true})
          })

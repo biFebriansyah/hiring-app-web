@@ -12,12 +12,12 @@ class App extends Component {
    render() {
       return (
          <BrowserRouter>
+            <ProtectedRoute exact path="/profile" component={ProfileEngineer} />
+            <ProtectedRoute exact path="/home" component={Landing} />
             <Route exact path="/" component={Welcome} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/engineer" component={RegisterEngineer} />
-            <ProtectedRoute exact path="/profile" component={ProfileEngineer} />
-            <ProtectedRoute exact path="/home" component={Landing} />
+            <Route exact path="/engineer/:username" component={RegisterEngineer} />
          </BrowserRouter>
       );
    }

@@ -11,7 +11,6 @@ class Landing extends Component {
       this.state = {
           data : []
       }
-      
       this.handelDetail = this.handelDetail.bind(this);
    }
 
@@ -20,7 +19,6 @@ class Landing extends Component {
    }
 
    componentDidMount() {
-
       axios({
          method: 'get',
          url: 'http://localhost:4000/engineer',
@@ -66,8 +64,8 @@ class Landing extends Component {
                     </div> */}
                     <div className="account-parent">
                     <Link className='acount-link' to='/profile'>
-                           <div className="logo-account">T</div>
-                          <h2>Telkom</h2>
+                        <div className="logo-account">T</div>
+                        <h2>Telkom</h2>
                     </Link>
                     </div>
                  </div>
@@ -85,7 +83,7 @@ class Landing extends Component {
            {
               this.state.data.map(post => {
 
-                 return <Cards key={post.id} src={post.photo} name={post.name} />
+                 return <Cards key={post.id} src={post.photo} name={post.name} user={post.id} getId ={this.handelDetail}/>
                  
               })
            }

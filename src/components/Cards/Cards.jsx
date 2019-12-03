@@ -4,11 +4,16 @@ import './scss/cards.scss';
 
 const Cards = (props) => {
 
+   const handleCLick = () => {
+      const id = props.user
+      console.log('click ' + id)
+   }
+
    return (
       <div className="card-container">
          <div className="box" >
             <img src={props.src} alt="" />
-            <div className="box-content">
+            <div className="box-content" onClick={handleCLick}>
                <h2 className="Name">{props.name}</h2>
                <h3 className="Job">Web Developer</h3>
                <div className="box-icon">
