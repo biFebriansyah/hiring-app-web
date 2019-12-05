@@ -12,6 +12,12 @@ class Landing extends Component {
           data : []
       }
       this.handelDetail = this.handelDetail.bind(this);
+      this.logout = this.logout.bind(this);
+   }
+
+   logout () {
+      localStorage.removeItem('login');
+      this.props.history.push('/login');
    }
 
    handelDetail (id) {
@@ -57,25 +63,25 @@ class Landing extends Component {
                     </div>
                  </div>
                  <div className="home-account">
-                    {/* <div className="home-parent">
+                    <div className="home-parent">
                        <div className="text">
                           <h2>Home</h2>
                        </div>
-                    </div> */}
+                    </div>
                     <div className="account-parent">
                     <Link className='acount-link' to='/profile'>
                         <div className="logo-account">T</div>
-                        <h2>Telkom</h2>
+                        <p>Telkom</p>
                     </Link>
                     </div>
                  </div>
-                 <div className="garis-dot">
+                 {/* <div className="garis-dot">
                     <span className="garis icon-garis"></span>
-                 </div>
+                 </div> */}
                  <div className="msg-notif">
                     <span className="icon icon-chat"></span>
                     <span className="icon icon-notif"></span>
-                    <span className="icon icon-dott"></span>
+                    <Link className="logout" onClick={this.logout}>Logout</Link>
                  </div>
               </div>
            </header>
