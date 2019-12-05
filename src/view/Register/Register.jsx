@@ -1,178 +1,152 @@
-import React, { Component,  } from 'react';
-import {Link, Redirect} from 'react-router-dom'
-import axios from 'axios';
+import React, { Component } from "react";
+import { Link, Redirect } from "react-router-dom";
+import axios from "axios";
 import "./scss/register.scss";
+import heroImg from "./img/hero.jpeg";
+import logo from './img/Arkademy Putih.svg';
 
 class Regiester extends Component {
    constructor(props) {
-      super(props)
-   
+      super(props);
+
       this.state = {
          login: false,
-         value: 1,
+         value: "Who you are?",
+         imgSrc: heroImg,
          formData: {
-            name: '',
-            username : '',
-            email: '',
+            username: "",
+            email: "",
             role: 1,
-            password: ''
+            password: ""
          }
-      }
+      };
       this.onsubmit = this.onsubmit.bind(this);
-      this.OneEffect = this.OneEffect.bind(this);
-      this.OfEffect = this.OfEffect.bind(this);
+      this.inputOnFocus = this.inputOnFocus.bind(this);
+      this.inputOnBlur = this.inputOnBlur.bind(this);
       this.onFormChange = this.onFormChange.bind(this);
    }
 
    async onsubmit(event) {
-
       axios({
-         method: 'post',
-         url: 'http://localhost:4000/register',
-         headers: {'Content-Type': 'application/json'},
+         method: "post",
+         url: "http://localhost:4000/register",
+         headers: { "Content-Type": "application/json" },
          data: this.state.formData
-      }).then(res => {
-         this.props.history.push('/engineer/' + this.state.formData.username);
-      }).catch(err => {
-         if (err.response) {
-            return console.log(err.response.data.result[0])
-         }
-         if (err.request) {
-            return console.log('error from request', err.request);
-         }
-         else {
-            console.log('unknown error')
-         }
       })
+         .then(res => {
+            this.props.history.push("/engineer/" + this.state.formData.username);
+         })
+         .catch(err => {
+            if (err.response) {
+               return console.log(err.response.data.result[0]);
+            }
+            if (err.request) {
+               return console.log("error from request", err.request);
+            } else {
+               console.log("unknown error");
+            }
+         });
 
-      event.preventDefault()
+      event.preventDefault();
    }
 
-   OneEffect(event) {
-      event.target.classList.add('spanChange')
+   inputOnFocus(event) {
+      event.target.classList.add('focus');
    }
-
-   OfEffect(event) {
+   inputOnBlur(event) {
       if (event.target.value === "") {
-         event.target.classList.remove('spanChange')
+         event.target.classList.remove('focus');
       }
    }
 
-   onFormChange (event) {
-      let dataForm = {...this.state.formData};
+   onFormChange(event) {
+      let dataForm = { ...this.state.formData };
       dataForm[event.target.name] = event.target.value;
-      this.setState({
-         formData: dataForm
-      },() => {
-         console.log(this.state.formData);
-      })
+      this.setState(
+         {
+            formData: dataForm
+         },
+         () => {
+            console.log(this.state.formData);
+         }
+      );
    }
 
    render() {
       if (this.state.login) {
-         return <Redirect to={'/login'} />;
+         return <Redirect to={"/login"} />;
       }
       return (
-         <div className="center">
-            <div className="theForm">
-               <div className="theText">
-                  <h1>Register System</h1>
-                  <h3>Create your account to login</h3>
+         <div className="Register-container">
+            <div className="Register-login-from">
+               <div className="Register-img-container">
+                  <div className="register-section">
+                     <div className="logo-putih">
+                        <img src={logo} alt="" className="logo-regis" />
+                     </div>
+                     <h3>Join with us for new Journey</h3>
+                  </div>
+                  <img src={this.state.imgSrc} alt="hero-img" ref={this.img} />
                </div>
-               <form>
-                  <div className="nama">
-                     <div className="theInput">
+               <div className="Register-input-container">
+                  <div className="Register-text-explain">
+                     <h2>Register Form</h2>
+                     <h3>data in this form will be use to login</h3>
+                  </div>
+                  <div className="register-input">
+                     <div className="register-inp">
                         <input
-                           ref="inputFirst"
-                           className="inputDepan"
                            type="text"
-                           name="name"
-                           autoComplete="off"
-                           placeholder="First name"
-                           onFocus={this.OneEffect}
-                           onBlur={this.OfEffect}
                            onChange={this.onFormChange}
+                           name="username"
+                           ref="inputUser"
+                           autoComplete="off"
+                           onFocus={this.inputOnFocus}
+                           onBlur={this.inputOnBlur}
+                           className={this.state.classUser}
                         />
-                        {/* <span>
-                           <label htmlFor="namaDepan">Nama depan</label>
-                        </span> */}
-                        <p className="alret alretDepan">Tidak boleh Kosong</p>
+                        <span data-placeholder="Username" />
                      </div>
-                  </div>
-                  <div className="theInput inputUsername">
-                     <input className="inputUser" type="text" onChange={this.onFormChange} name="username" autoComplete="off" ref="inputUsername" placeholder="Username" onFocus={this.OneEffect}
-                           onBlur={this.OfEffect}/>
-                     {/* <span>
-                        <label htmlFor="namaName">Username</label>
-                     </span> */}
-                     <p className="userInfo"> Use the unik username, add number or symbol</p>
-                     <p className="alret alretUser">Tidak boleh Kosong</p>
-                  </div>
-                  <div className="theInput inputEmailCon">
-                     <input className="inputEmail" type="email" onChange={this.onFormChange} name="email" autoComplete="off" ref="inputEmail" placeholder="Email" onFocus={this.OneEffect}
-                           onBlur={this.OfEffect} />
-                     {/* <span>
-                        <label htmlFor="email">Email</label>
-                     </span> */}
-                     <p className="alret alretUser">Tidak boleh Kosong</p>
-                  </div>
-                  <div className="custom-select">
-                     <select onChange={this.onFormChange} name='role'>
-                        <option value={this.state.value} disabled>
-                           Who you Are?:
-                        </option>
-                        <option value="1">Compnay</option>
-                        <option value="2">Engineer</option>
-                     </select>
-                  </div>
-                  <div className="password">
-                     <div className="theInput">
+                     <div className="register-inp">
                         <input
-                           ref="inputPass"
-                           className="inputPass"
+                           type="email"
+                           onChange={this.onFormChange}
+                           name="email"
+                           ref="inputUser"
+                           autoComplete="off"
+                           onFocus={this.inputOnFocus}
+                           onBlur={this.inputOnBlur}
+                           className={this.state.classUser}
+                        />
+                        <span data-placeholder="email" />
+                     </div>
+                     <div className="register-inp">
+                        <input
                            type="password"
+                           onChange={this.onFormChange}
                            name="password"
+                           ref="inputUser"
                            autoComplete="off"
-                           placeholder="Password"
-                           onFocus={this.OneEffect}
-                           onBlur={this.OfEffect}
-                           onChange={this.onFormChange}
+                           onFocus={this.inputOnFocus}
+                           onBlur={this.inputOnBlur}
+                           className={this.state.classUser}
                         />
-                        {/* <span>
-                           <label htmlFor="password1">Password</label>
-                        </span> */}
-                        <p className="alret alretPass">Tidak boleh Kosong</p>
+                        <span data-placeholder="password" />
                      </div>
-                     <div className="theInput">
-                        <input
-                           className="inputConfirm"
-                           ref="inputPassConfirm"
-                           type="password"
-                           name="confirm"
-                           autoComplete="off"
-                           placeholder="Confirm"
-                           onFocus={this.OneEffect}
-                           onBlur={this.OfEffect}
-                           onChange={this.onFormChange}
-                        />
-                        {/* <span>
-                           <label htmlFor="password2">Confirm</label>
-                        </span> */}
-                        <p className="alretConf">Password tidak sama</p>
+                     <div className="register-custom-select">
+                        <select onChange={this.onFormChange} name="role">
+                           <option value="0" disabled selected>
+                              {this.state.value}
+                           </option>
+                           <option value="1">Compnay</option>
+                           <option value="2">Engineer</option>
+                        </select>
                      </div>
                   </div>
-                  <p className="passInfo">Pass word must be 8 char or more</p>
-                  <div className="button">
-                     <div className="daftar">
-                        <button name="daftar" onClick={this.onsubmit} className="btnDaftar" >
-                           Daftar
-                        </button>
-                     </div>
-                     <div className="masuk">
-                        <Link to='/login'>Login here</Link>
-                     </div>
+                  <div className="Register-btn-save">
+                     <button onClick={this.onsubmit}>Next</button>
                   </div>
-               </form>
+               </div>
             </div>
          </div>
       );

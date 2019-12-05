@@ -25,9 +25,9 @@ class Test extends Component {
 
     render() {
         return (
-            <div className="Engineer-container">
-            <div className="Engineer-login-from">
-               <div className="Engineer-img-container">
+            <div className="Register-container">
+            <div className="Register-login-from">
+               <div className="Register-img-container">
                   <div className="register-section">
                      <div className="logo-putih">
                         <img src={logo} alt="" className='logo-regis'/>
@@ -36,8 +36,8 @@ class Test extends Component {
                   </div>
                   <img src={this.state.imgSrc} alt="hero-img" ref={this.img} />
                </div>
-               <div className="Engineer-input-container">
-                  <div className="Engineer-text-explain">
+               <div className="Register-input-container">
+                  <div className="Register-text-explain">
                      <h2>Register Form</h2>
                      <h3>data in this form will be use to login</h3>
                   </div>
@@ -64,7 +64,7 @@ class Test extends Component {
                      </select>
                   </div>
                   </div>
-                  <div className="Engineer-btn-save">
+                  <div className="Register-btn-save">
                      <button onClick={this.onSave}>Next</button>
                   </div>
                </div>
