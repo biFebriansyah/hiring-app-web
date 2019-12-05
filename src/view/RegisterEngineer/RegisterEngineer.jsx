@@ -11,8 +11,8 @@ class Engineer extends Component {
       this.state = {
          files: null,
          imgSrc: heroImg,
-         username: '',
          userData: {
+            username: this.props.match.params.username,
              name: '',
              dob: '',
              skill: '',
@@ -27,6 +27,7 @@ class Engineer extends Component {
       this.inputFile = React.createRef();
       this.inputChange = this.inputChange.bind(this);
       this.handleChange = this.handleChange.bind(this);
+      this.userFrom = new FormData();
    }
 
    inputChange(event) {
@@ -42,24 +43,32 @@ class Engineer extends Component {
          };
          reader.readAsDataURL(file);
       }
-      this.handleChange(event)
       event.preventDefault();
+   }
+
+   setData () {
+      this.userFrom.append('username', this.state.userData.username);
+      this.userFrom.append('name', this.state.userData.name);
+      this.userFrom.append('dob', this.state.userData.dob);
+      this.userFrom.append('skill', this.state.userData.skill);
+      this.userFrom.append('desc', this.state.userData.desc);
+      this.userFrom.append('git', this.state.userData.git);
+      this.userFrom.append('location', this.state.userData.location);
+      this.userFrom.append('photo', this.state.files);
    }
 
    handleChange(event) {
         let userData = {...this.state.userData};
         let inputName = event.target.name;
         let inputValue = event.target.value;
-        
         if (inputName === 'skill') {
             if (event.target.checked) {
-                let skilList = inputValue + userData[inputName] + " "
+                let skilList = inputValue + ", " +userData[inputName]
                 console.log(skilList)
                 userData[inputName] = skilList
             }
         } else {
             userData[inputName] = inputValue;
-            userData['photo'] = this.state.files;
         }
         this.setState({
             userData: userData
@@ -69,34 +78,26 @@ class Engineer extends Component {
    }
 
    onSave(event) {
-    let userFrom = new FormData()
-    userFrom.append('username', this.props.match.params.username)
-    userFrom.append('name', this.state.userData.name);
-    userFrom.append('dob', this.state.userData.dob);
-    userFrom.append('skill', this.state.userData.skill);
-    userFrom.append('desc', this.state.userData.desc);
-    userFrom.append('git', this.state.userData.git);
-    userFrom.append('location', this.state.userData.location);
-    userFrom.append('photo', this.state.files, this.state.files.name);
-   //  console.log(userFrom);
-    axios({
-        method: 'post',
-        url: 'http://localhost:4000/engineer',
-        headers: {'content-type': 'multipart/form-data'},
-        data: userFrom
-     }).then(res => {
-        console.log(res.data)
-     }).catch(err => {
-        if (err.response) {
-           return console.log(err.response.data)
-        }
-        if (err.request) {
-           return console.log('error from request', err.request);
-        }
-        else {
-           console.log('unknown error')
-        }
-     })
+
+      this.setData();
+      axios({
+         method: 'post',
+         url: 'http://localhost:4000/engineer',
+         headers: {'content-type': 'multipart/form-data'},
+         data: this.userFrom
+      }).then(res => {
+         this.props.history.push('/login');
+      }).catch(err => {
+         if (err.response) {
+            return console.log(err.response.data)
+         }
+         if (err.request) {
+            return console.log('error from request', err.request);
+         }
+         else {
+            console.log('unknown error')
+         }
+      })
 
      event.preventDefault()
    }

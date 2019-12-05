@@ -22,7 +22,6 @@ class Regiester extends Component {
       this.OneEffect = this.OneEffect.bind(this);
       this.OfEffect = this.OfEffect.bind(this);
       this.onFormChange = this.onFormChange.bind(this);
-      this.errors = this.errors.bind(this);
    }
 
    async onsubmit(event) {
@@ -33,10 +32,7 @@ class Regiester extends Component {
          headers: {'Content-Type': 'application/json'},
          data: this.state.formData
       }).then(res => {
-         console.log(res.data.result[0])
-         this.setState({
-            login: true
-         })
+         this.props.history.push('/engineer/' + this.state.formData.username);
       }).catch(err => {
          if (err.response) {
             return console.log(err.response.data.result[0])
@@ -52,17 +48,6 @@ class Regiester extends Component {
       event.preventDefault()
    }
 
-   errors (err) {
-      if (err.response) {
-         console.log('error from response', err.response.status)
-      }
-      if (err.request) {
-         console.log('error from request', err.request);
-      }
-      else {
-         console.log('unknown error')
-      }
-   }
    OneEffect(event) {
       event.target.classList.add('spanChange')
    }
