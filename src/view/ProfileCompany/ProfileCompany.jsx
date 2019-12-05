@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
 import './sass/ProfileCompany.scss';
-import logo from './img/Arkademy Hitam.svg';
 import companyLogo from './img/jualan-di-tokopedia.jpg';
+import Header from '../../components/Header/Header';
 
 class ProfileCompany extends Component {
     constructor(props) {
@@ -22,16 +21,7 @@ class ProfileCompany extends Component {
     render() {
         return (
             <div className="profile-container">
-            <div className="profile-navbar">
-              <div className="nav-conten">
-                <img src={logo} alt="" />
-                <div className="nav-right">
-                    <Link>Toko Pedia</Link>
-                    <Link>Home</Link>
-                    <Link>Logout</Link>
-                </div> 
-              </div>
-            </div>
+            <Header></Header>
             <div className="profile-conten">
               <div className="content-top">
                 <div className="logo">
@@ -43,7 +33,7 @@ class ProfileCompany extends Component {
                   <button onClick={this.handleClick}>Create Project</button>
                 </div>
               </div>
-              <div className="profile-detail">
+              {/* <div className="profile-detail">
                 <div className="contact">
                   <div className="location boxStyle">
                     <p>Location here</p>
@@ -70,7 +60,7 @@ class ProfileCompany extends Component {
                     <p className="status">rejected</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         )

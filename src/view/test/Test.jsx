@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './style.scss'
-import heroImg from "./img/hero.jpeg";
-import logo from './img/Arkademy Putih.svg';
+import heroImg from "./img/alaska.jpg";
 
 class Test extends Component {
     constructor(props) {
@@ -10,65 +9,42 @@ class Test extends Component {
         this.state = {
             imgSrc: heroImg,
         }
-        this.inputOnFocus = this.inputOnFocus.bind(this);
-        this.inputOnBlur = this.inputOnBlur.bind(this);
     }
-
-    inputOnFocus(event) {
-        event.target.classList.add('focus');
-     }
-     inputOnBlur(event) {
-        if (event.target.value === "") {
-           event.target.classList.remove('focus');
-        }
-     }
 
     render() {
         return (
-            <div className="Register-container">
-            <div className="Register-login-from">
-               <div className="Register-img-container">
-                  <div className="register-section">
-                     <div className="logo-putih">
-                        <img src={logo} alt="" className='logo-regis'/>
-                     </div>
-                     <h3>Join with us for new Journey</h3>
-                  </div>
-                  <img src={this.state.imgSrc} alt="hero-img" ref={this.img} />
-               </div>
-               <div className="Register-input-container">
-                  <div className="Register-text-explain">
-                     <h2>Register Form</h2>
-                     <h3>data in this form will be use to login</h3>
-                  </div>
-                  <div className="register-input">
-                    <div className="register-inp">
-                        <input type="text" onChange={this.onChangeInput} name="username" ref='inputUser' autoComplete="off" onFocus={this.inputOnFocus} onBlur={this.inputOnBlur} className={this.state.classUser}/>
-                        <span data-placeholder="Username" />
+           <div>
+               {/* <header>
+              <div className="container-header">
+                 <div className="img-header">
+                    <img src={require('./img/logo.png')} alt="arkademy logo" />
+                 </div>
+                 <div className="search-header">
+                    <div className="input-fild">
+                       <span className="iconSearch icon-search"></span>
+                       <input type="text" placeholder="Search" />
                     </div>
-                    <div className="register-inp">
-                        <input type="email" onChange={this.onChangeInput} name="email" ref='inputUser' autoComplete="off" onFocus={this.inputOnFocus} onBlur={this.inputOnBlur} className={this.state.classUser}/>
-                        <span data-placeholder="email" />
+                 </div>
+                 <div className="home-account">
+                    <div className="home-parent">
+                       <div className="text">
+                          <h2>Home</h2>
+                       </div>
                     </div>
-                    <div className="register-inp">
-                        <input type="password" onChange={this.onChangeInput} name="password" ref='inputUser' autoComplete="off" onFocus={this.inputOnFocus} onBlur={this.inputOnBlur} className={this.state.classUser}/>
-                        <span data-placeholder="password" />
+                    <div className="account-parent">
+                    <Link className='acount-link' to='/profile'>
+                        <div className="logo-account">T</div>
+                        <p>Telkom</p>
+                    </Link>
                     </div>
-                    <div className="register-custom-select">
-                     <select onChange={this.onFormChange} name='role'>
-                        <option value={this.state.value} disabled>
-                           Who you Are?:
-                        </option>
-                        <option value="1">Compnay</option>
-                        <option value="2">Engineer</option>
-                     </select>
-                  </div>
-                  </div>
-                  <div className="Register-btn-save">
-                     <button onClick={this.onSave}>Next</button>
-                  </div>
-               </div>
-            </div>
+                 </div>
+                 <div className="msg-notif">
+                    <span className="icon icon-chat"></span>
+                    <span className="icon icon-notif"></span>
+                    <Link className="logout" onClick={this.logout}>Logout</Link>
+                 </div>
+              </div>
+           </header> */}
          </div>
         )
     }

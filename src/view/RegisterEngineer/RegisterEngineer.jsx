@@ -89,7 +89,9 @@ class Engineer extends Component {
          this.props.history.push('/login');
       }).catch(err => {
          if (err.response) {
-            return console.log(err.response.data)
+            alert(err.response.data.result[0]);
+            console.log(err.response.data.result[0])
+            return
          }
          if (err.request) {
             return console.log('error from request', err.request);

@@ -8,8 +8,8 @@ import ProfileEngineer from './view/ProfileEngineer/ProfileEngineer'
 import Landing from './view/Landing/Landing';
 import RegisterEngineer from './view/RegisterEngineer/RegisterEngineer'
 import ProjectCompany from './view/ProjectCompany/ProjectCompany'
-import Test from "./view/test/Test";
 import ProfileCompany from "./view/ProfileCompany/ProfileCompany";
+import DetailEngineer from "./view/DetailEngineer/DetailEngineer";
 
 class App extends Component {
    render() {
@@ -22,8 +22,9 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/engineer/:username" component={RegisterEngineer} />
             <Route exact path="/create" component={ProjectCompany} />
-            <Route exact path="/test" component={Test} />
-            <Route exact path="/Profilec" component={ProfileCompany} />
+            {/* <Route exact path="/test" component={Test} /> */}
+            <ProtectedRoute exact path="/Profilec" component={ProfileCompany} />
+            <ProtectedRoute exact path="/Detail/:username" component={DetailEngineer} />
          </BrowserRouter>
       );
    }

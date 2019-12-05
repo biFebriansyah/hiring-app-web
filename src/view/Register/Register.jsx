@@ -38,7 +38,9 @@ class Regiester extends Component {
          })
          .catch(err => {
             if (err.response) {
-               return console.log(err.response.data.result[0]);
+               alert(err.response.data.result[0])
+               return
+               // return console.log(err.response.data.result[0]);
             }
             if (err.request) {
                return console.log("error from request", err.request);

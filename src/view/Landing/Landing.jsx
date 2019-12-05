@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 import axios from 'axios';
 import Cards from '../../components/Cards/Cards'
 import './scss/landing.scss';
@@ -9,19 +9,24 @@ class Landing extends Component {
       super(props)
    
       this.state = {
+         username : '',
+         redir : false,
           data : []
       }
       this.handelDetail = this.handelDetail.bind(this);
       this.logout = this.logout.bind(this);
    }
 
+   handelDetail (username) {
+      this.setState({
+         username: username,
+         redir: true
+      })
+   }
+
    logout () {
       localStorage.removeItem('login');
       this.props.history.push('/login');
-   }
-
-   handelDetail (id) {
-      console.log(id)
    }
 
    componentDidMount() {
@@ -37,7 +42,7 @@ class Landing extends Component {
          })
       }).catch(err => {
          if (err.response) {
-            return console.log(err.response.data)
+            return console.log(err.response.data.result[0])
          }
          if (err.request) {
             return console.log('error from request', err.request);
@@ -49,10 +54,13 @@ class Landing extends Component {
    }
    
     render() {
+       if (this.state.redir) {
+          return <Redirect to={`/Detail/${this.state.username}`} />;
+       }
         return (
            <div>
-           <header>
-              <div className="container-header">
+               <header>
+                  <div className="container-header-componen">
                  <div className="img-header">
                     <img src={require('./img/logo.png')} alt="arkademy logo" />
                  </div>
@@ -63,7 +71,7 @@ class Landing extends Component {
                     </div>
                  </div>
                  <div className="home-account">
-                    <div className="home-parent">
+                    <div className="home-parent" onClick={this.goHome}>
                        <div className="text">
                           <h2>Home</h2>
                        </div>
@@ -75,9 +83,6 @@ class Landing extends Component {
                     </Link>
                     </div>
                  </div>
-                 {/* <div className="garis-dot">
-                    <span className="garis icon-garis"></span>
-                 </div> */}
                  <div className="msg-notif">
                     <span className="icon icon-chat"></span>
                     <span className="icon icon-notif"></span>
@@ -89,8 +94,7 @@ class Landing extends Component {
            {
               this.state.data.map(post => {
 
-                 return <Cards key={post.id} src={post.photo} name={post.name} user={post.id} getId ={this.handelDetail}/>
-                 
+                 return <Cards key={post.id} src={post.photo} name={post.name} user={post.username} getId ={this.handelDetail} skill={post.skill} />
               })
            }
             </div>

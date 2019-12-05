@@ -6,7 +6,7 @@ const Cards = (props) => {
 
    const handleCLick = () => {
       const id = props.user
-      console.log('click ' + id)
+      props.getId(id);
    }
 
    return (
@@ -30,9 +30,7 @@ const Cards = (props) => {
                   <p>Skill :</p>
                </div>
                <ul className="list-skill">
-                  <li>Php</li>
-                  <li>JavaScript</li>
-                  <li>NodeJs</li>
+                  <p>{props.skill}</p>
                </ul>
                <div className="cards-detail">
                </div>
