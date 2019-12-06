@@ -4,13 +4,13 @@ import axios from 'axios';
 import Cards from '../../components/Cards/Cards'
 import './scss/landing.scss';
 import { connect } from 'react-redux';
-import {getUser} from '../../public/Redux/Actions/User';
 
 class Landing extends Component {
    constructor(props) {
       super(props)
    
       this.state = {
+         profile: '',
          username : '',
          redir : false,
           data : [],
@@ -18,6 +18,7 @@ class Landing extends Component {
       }
       this.handelDetail = this.handelDetail.bind(this);
       this.logout = this.logout.bind(this);
+      this.setProfile = this.setProfile.bind(this);
    }
 
    handelDetail (username) {
@@ -28,15 +29,19 @@ class Landing extends Component {
    }
 
    logout () {
-      localStorage.removeItem('login');
+      localStorage.clear();
       this.props.history.push('/login');
    }
 
-   // async fetchData () {
-   //    await this.props.dispatch(getUser('edozel28'))
-   //    console.log(this.props)
-   // }
+   setProfile () {
 
+      if (!this.props.dataUser.dob) {
+         this.setState({profile: '/profilec/'})
+      } else {
+         this.setState({profile: '/profile/'})
+      }
+   }
+   
    componentDidMount() {
       axios({
          method: 'get',
@@ -48,7 +53,8 @@ class Landing extends Component {
          this.setState({
             data: result
          })
-         console.log(this.props.dataUser)
+         this.setProfile();
+
       }).catch(err => {
          if (err.response) {
             return console.log(err.response.data.result[0])
@@ -65,6 +71,9 @@ class Landing extends Component {
     render() {
        if (this.state.redir) {
           return <Redirect to={`/Detail/${this.state.username}`} />;
+       }
+       if (!this.props.dataUser) {
+         return <Redirect to={'/login'} />;
        }
         return (
            <div>
@@ -86,16 +95,16 @@ class Landing extends Component {
                        </div>
                     </div>
                     <div className="account-parent">
-                    <Link className='acount-link' to='/profile'>
-                        <div className="logo-account">T</div>
-                        <p>Telkom</p>
+                    <Link className='acount-link' to={this.state.profile + this.props.dataUser.username}>
+                        <div className="logo-account">{this.props.dataUser.name.charAt(0)}</div>
+                        <p>{this.props.dataUser.name}</p>
                     </Link>
                     </div>
                  </div>
                  <div className="msg-notif">
                     <span className="icon icon-chat"></span>
                     <span className="icon icon-notif"></span>
-                    <Link to ="" className="logout" onClick={this.logout}>Logout</Link>
+                    <Link className="logout" onClick={this.logout}>Logout</Link>
                  </div>
               </div>
            </header>

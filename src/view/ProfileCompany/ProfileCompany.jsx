@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './sass/ProfileCompany.scss';
-import companyLogo from './img/jualan-di-tokopedia.jpg';
 import Header from '../../components/Header/Header';
+import {connect} from 'react-redux'
 
 class ProfileCompany extends Component {
     constructor(props) {
@@ -25,10 +25,10 @@ class ProfileCompany extends Component {
             <div className="profile-conten">
               <div className="content-top">
                 <div className="logo">
-                  <img src={companyLogo} alt="" />
+                  <img src={this.props.dataUser.logo} alt="" />
                 </div>
                 <div className="profile-des">
-                  <h2>Toko Pedia</h2>
+                  <h2>{this.props.dataUser.name}</h2>
                   <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure, necessitatibus doloremque tenetur dolor adipisci incidunt ea, accusamus, voluptas quod quasi eveniet quo delectus. Nobis cupiditate possimus nulla debitis recusandae nisi.</p>
                   <button onClick={this.handleClick}>Create Project</button>
                 </div>
@@ -67,4 +67,10 @@ class ProfileCompany extends Component {
     }
 }
 
-export default ProfileCompany
+const mapStateToProps = state => {
+  return {
+     dataUser: state.data.userData
+  }
+}
+
+export default connect(mapStateToProps)(ProfileCompany)

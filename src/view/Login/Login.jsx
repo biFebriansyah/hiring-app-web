@@ -5,7 +5,7 @@ import axios from 'axios';
 import auth from '../../auth/Auth';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'; 
-import {getUser} from '../../public/Redux/Actions/User';
+import {getEngineer, getCompany} from '../../public/Redux/Actions/User';
 
 class Login extends Component {
 
@@ -14,6 +14,7 @@ class Login extends Component {
 
         this.state = {
            login : false,
+           role: '',
            users : {
               username : '',
               password : ''
@@ -25,8 +26,17 @@ class Login extends Component {
         this.login = this.login.bind(this);
     }
 
-    setDatauser (username) {
-       this.props.setDataUser(username);
+    async setDatauser (username) {
+
+      if (this.state.role === 2) {
+         await this.props.setDataEngineer(username);
+      }
+      if (this.state.role === 1 ) {
+         await this.props.setDataCompany(username);
+      }
+       auth.loginAuth(() => {
+         this.setState({login: true})
+      })
     }
 
     login(event) {
@@ -38,12 +48,11 @@ class Login extends Component {
          data: this.state.users
 
       }).then(res => {
-         // const result = res.data.result[0]
+         const result = res.data.result[0]
+         this.setState({role: result.role})
          localStorage.setItem('login', true)
-         auth.loginAuth(() => {
-            this.setState({login: true})
-         })
          this.setDatauser(this.state.users.username);
+
       }).catch(err => {
          if (err.response) {
             const result = err.response.data.result
@@ -110,7 +119,8 @@ class Login extends Component {
 const mapDispatchToPropps = (dispatch) => {
 
    return {
-      setDataUser: bindActionCreators(getUser, dispatch)
+      setDataEngineer: bindActionCreators(getEngineer, dispatch),
+      setDataCompany : bindActionCreators(getCompany, dispatch)
    };
 }
 

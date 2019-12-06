@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Redirect} from 'react-router-dom';
 import './scss/header.scss';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Header extends Component {
    constructor(props) {
@@ -9,6 +10,7 @@ class Header extends Component {
    
       this.state = {
          goHome: false,
+         logout: false,
           data : []
       }
       this.goHome = this.goHome.bind(this);
@@ -21,13 +23,16 @@ class Header extends Component {
    }
 
    logout () {
-      localStorage.removeItem('login');
-      this.props.history.push('/login');
+      localStorage.clear();
+      this.setState({logout: true})
    }
 
    render(){
       if (this.state.goHome) {
          return <Redirect to={'/home'}/>;
+      }
+      if (this.state.logout) {
+         return <Redirect to={'/login'}/>;
       }
       return (
          <div>
@@ -50,8 +55,8 @@ class Header extends Component {
                     </div>
                     <div className="account-parent">
                     <Link className='acount-link' to='/profile'>
-                        <div className="logo-account">T</div>
-                        <p>Telkom</p>
+                        <div className="logo-account">{this.props.dataUser.name.charAt(0)}</div>
+                        <p>{this.props.dataUser.name}</p>
                     </Link>
                     </div>
                  </div>
@@ -67,4 +72,11 @@ class Header extends Component {
    }
 };
 
-export default Header;
+
+const mapStateToProps = state => {
+   return {
+      dataUser: state.data.userData
+   }
+ }
+
+export default connect(mapStateToProps)(Header);

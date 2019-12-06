@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./scss/engineer.scss";
+import "./scss/RegisterCompany.scss";
 import heroImg from "./img/sample2.jpg";
 import axios from 'axios';
 import FormData from 'form-data';
 
-class Engineer extends Component {
+class Company extends Component {
    constructor(props) {
       super(props);
 
@@ -13,12 +13,10 @@ class Engineer extends Component {
          imgSrc: heroImg,
          userData: {
             username: this.props.match.params.username,
-             name: '',
-             dob: '',
-             skill: '',
-             desc: '',
-             git: '',
-             location: '',
+            name: '',
+            email: '',
+            telp: '',
+            location: '',
          }
       };
 
@@ -49,10 +47,8 @@ class Engineer extends Component {
    setData () {
       this.userFrom.append('username', this.state.userData.username);
       this.userFrom.append('name', this.state.userData.name);
-      this.userFrom.append('dob', this.state.userData.dob);
-      this.userFrom.append('skill', this.state.userData.skill);
-      this.userFrom.append('desc', this.state.userData.desc);
-      this.userFrom.append('git', this.state.userData.git);
+      this.userFrom.append('email', this.state.userData.email);
+      this.userFrom.append('telp', this.state.userData.telp);
       this.userFrom.append('location', this.state.userData.location);
       this.userFrom.append('photo', this.state.files);
    }
@@ -82,7 +78,7 @@ class Engineer extends Component {
       this.setData();
       axios({
          method: 'post',
-         url: 'http://localhost:4000/engineer',
+         url: 'http://localhost:4000/company',
          headers: {'content-type': 'multipart/form-data'},
          data: this.userFrom
       }).then(res => {
@@ -115,52 +111,27 @@ class Engineer extends Component {
             <div className="Engineer-login-from">
                <div className="inpFoto">
                   <input type="file" name="photo" ref={this.inputFile} onChange={this.inputChange} />
-                  <button className="btn-choose" onClick={this.handleFile}>Choose Photo</button>
+                  <button className="btn-choose" onClick={this.handleFile}>Choose Logo</button>
                </div>
                <div className="Engineer-img-container">
                   <img src={this.state.imgSrc} alt="hero-img" ref={this.img} />
                </div>
                <div className="Engineer-input-container">
                   <div className="Engineer-text-explain">
-                     <h2>Input your data</h2>
-                     <h3>Lorem, ipsum dolor sit amet consectetur</h3>
+                     <h2>Input data Company</h2>
+                     <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h3>
                   </div>
                   <div className="Engineer-input-name Engineer-putin">
-                     <input type="text" name="name" placeholder="youre name" onChange={this.handleChange} />
+                     <input type="text" name="name" placeholder="Company name" onChange={this.handleChange} />
                   </div>
-                  <div className="Engineer-inputDob Engineer-putin">
-                     <input type="date" onChange={this.handleChange} name='dob'/>
-                     <input type="text" name='location' onChange={this.handleChange} placeholder='youre location'/>
+                  <div className="Engineer-inputDob Engineer-putin companyEmailTelp">
+                     <input type="text" name='email' onChange={this.handleChange} placeholder='email' className='Companyemail'/>
+                     <input type="text" name='telp' onChange={this.handleChange} placeholder='telp'/>
                   </div>
-                  <div className="Engineer-inputSkil Engineer-putin">
-                     <div className="Engineer-skilinput">
-                        <input type="checkbox" name="skill" defaultValue="java script" onChange={this.handleChange}/>
-                        <p>Java Script</p>
-                     </div>
-                     <div className="Engineer-skilinput">
-                        <input type="checkbox" name="skill" defaultValue="php" onChange={this.handleChange}/>
-                        <p>Php</p>
-                     </div>
-                     <div className="Engineer-skilinput">
-                        <input type="checkbox" name="skill" defaultValue="css" onChange={this.handleChange}/>
-                        <p>Css</p>
-                     </div>
-                     <div className="Engineer-skilinput">
-                        <input type="checkbox" name="skill" defaultValue="python" onChange={this.handleChange}/>
-                        <p>Python</p>
-                     </div>
-                     <div className="Engineer-skilinput">
-                        <input type="checkbox" name="skill" defaultValue="ruby" onChange={this.handleChange}/>
-                        <p>Ruby</p>
-                     </div>
+                  <div className="Engineer-input-name Engineer-putin">
+                     <input type="text" name="location" placeholder="location" onChange={this.handleChange} />
                   </div>
-                  <div className="Engineer-description Engineer-putin">
-                     <textarea placeholder=" Youre Description here" cols={60} rows={8} name="desc" onChange={this.handleChange}/>
-                  </div>
-                  <div className="Engineer-putin git">
-                     <input type="text" name="git" className="Engineer-git-input" placeholder="https://github.com/biFebriansyah/" onChange={this.handleChange}/>
-                  </div>
-                  <div className="Engineer-btn-save">
+                  <div className="Engineer-btn-save companyBtn">
                      <button onClick={this.onSave}>Save</button>
                   </div>
                </div>
@@ -170,4 +141,4 @@ class Engineer extends Component {
    }
 }
 
-export default Engineer;
+export default Company;

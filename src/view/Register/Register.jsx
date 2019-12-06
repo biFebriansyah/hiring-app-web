@@ -10,13 +10,12 @@ class Regiester extends Component {
       super(props);
 
       this.state = {
-         login: false,
-         value: "Who you are?",
+         login: '0',
          imgSrc: heroImg,
          formData: {
             username: "",
             email: "",
-            role: 1,
+            role: '1',
             password: ""
          }
       };
@@ -24,6 +23,17 @@ class Regiester extends Component {
       this.inputOnFocus = this.inputOnFocus.bind(this);
       this.inputOnBlur = this.inputOnBlur.bind(this);
       this.onFormChange = this.onFormChange.bind(this);
+      this.pushTo = this.pushTo.bind(this);
+   }
+
+   pushTo() {
+      console.log(this.state.formData.role);
+      if (this.state.formData.role === '1') {
+         this.setState({login: '1'});
+      }
+      if (this.state.formData.role === '2') {
+         this.setState({login: '2'});
+      }
    }
 
    async onsubmit(event) {
@@ -33,21 +43,20 @@ class Regiester extends Component {
          headers: { "Content-Type": "application/json" },
          data: this.state.formData
       })
-         .then(res => {
-            this.props.history.push("/engineer/" + this.state.formData.username);
-         })
-         .catch(err => {
-            if (err.response) {
-               alert(err.response.data.result[0])
-               return
-               // return console.log(err.response.data.result[0]);
-            }
-            if (err.request) {
-               return console.log("error from request", err.request);
-            } else {
-               console.log("unknown error");
-            }
-         });
+      .then(res => {
+         this.pushTo();
+      })
+      .catch(err => {
+         if (err.response) {
+            alert(err.response.data.result[0])
+            return
+         }
+         if (err.request) {
+            return console.log("error from request", err.request);
+         } else {
+            console.log("unknown error");
+         }
+      });
 
       event.preventDefault();
    }
@@ -75,8 +84,12 @@ class Regiester extends Component {
    }
 
    render() {
-      if (this.state.login) {
-         return <Redirect to={"/login"} />;
+
+      if (this.state.login === '1') {
+         return <Redirect to={`/company/${this.state.formData.username}`}/>;
+      }
+      if (this.state.login === '2') {
+         return <Redirect to={`/engineer/${this.state.formData.username}`}/>;
       }
       return (
          <div className="Register-container">
@@ -137,9 +150,6 @@ class Regiester extends Component {
                      </div>
                      <div className="register-custom-select">
                         <select onChange={this.onFormChange} name="role">
-                           <option value="0" disabled selected>
-                              {this.state.value}
-                           </option>
                            <option value="1">Compnay</option>
                            <option value="2">Engineer</option>
                         </select>

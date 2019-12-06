@@ -9,7 +9,6 @@ class ProjectCompany extends Component {
     
         this.state = {
              dataForm: {
-                 username: 'tokopedia',
                  name: '',
                  time: '',
                  salary: '',
