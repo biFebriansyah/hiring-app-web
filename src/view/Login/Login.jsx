@@ -3,6 +3,9 @@ import {Link, Redirect} from 'react-router-dom';
 import "./login.scss";
 import axios from 'axios';
 import auth from '../../auth/Auth';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'; 
+import {getUser} from '../../public/Redux/Actions/User';
 
 class Login extends Component {
 
@@ -22,6 +25,10 @@ class Login extends Component {
         this.login = this.login.bind(this);
     }
 
+    setDatauser (username) {
+       this.props.setDataUser(username);
+    }
+
     login(event) {
 
       axios({
@@ -36,11 +43,11 @@ class Login extends Component {
          auth.loginAuth(() => {
             this.setState({login: true})
          })
-
+         this.setDatauser(this.state.users.username);
       }).catch(err => {
          if (err.response) {
             const result = err.response.data.result
-            return console.log(result[0])
+            alert(result[0]);
          }
          if (err.request) {
             return console.log(err.request)
@@ -49,7 +56,6 @@ class Login extends Component {
             return console.log(err)
          }
       })
-
       event.preventDefault()
     }
 
@@ -101,4 +107,11 @@ class Login extends Component {
    }
 }
 
-export default Login;
+const mapDispatchToPropps = (dispatch) => {
+
+   return {
+      setDataUser: bindActionCreators(getUser, dispatch)
+   };
+}
+
+export default connect (null, mapDispatchToPropps)(Login);

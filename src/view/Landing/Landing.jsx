@@ -3,6 +3,8 @@ import {Redirect, Link} from 'react-router-dom';
 import axios from 'axios';
 import Cards from '../../components/Cards/Cards'
 import './scss/landing.scss';
+import { connect } from 'react-redux';
+import {getUser} from '../../public/Redux/Actions/User';
 
 class Landing extends Component {
    constructor(props) {
@@ -11,7 +13,8 @@ class Landing extends Component {
       this.state = {
          username : '',
          redir : false,
-          data : []
+          data : [],
+          dataUser: {}
       }
       this.handelDetail = this.handelDetail.bind(this);
       this.logout = this.logout.bind(this);
@@ -29,6 +32,11 @@ class Landing extends Component {
       this.props.history.push('/login');
    }
 
+   // async fetchData () {
+   //    await this.props.dispatch(getUser('edozel28'))
+   //    console.log(this.props)
+   // }
+
    componentDidMount() {
       axios({
          method: 'get',
@@ -40,6 +48,7 @@ class Landing extends Component {
          this.setState({
             data: result
          })
+         console.log(this.props.dataUser)
       }).catch(err => {
          if (err.response) {
             return console.log(err.response.data.result[0])
@@ -86,7 +95,7 @@ class Landing extends Component {
                  <div className="msg-notif">
                     <span className="icon icon-chat"></span>
                     <span className="icon icon-notif"></span>
-                    <Link className="logout" onClick={this.logout}>Logout</Link>
+                    <Link to ="" className="logout" onClick={this.logout}>Logout</Link>
                  </div>
               </div>
            </header>
@@ -103,4 +112,10 @@ class Landing extends Component {
      }
 }
 
-export default Landing
+const mapStateToProps = state => {
+   return {
+      dataUser: state.data.userData
+   }
+ }
+
+export default connect (mapStateToProps)(Landing)

@@ -1,156 +1,115 @@
-$font-color : #979797;
-$button-color :#0439D9;
-$border-color : #07038C;
-$input-color : #056CF2;
-$abuabu : rgb(160, 160, 160);
-$alret : #F20732;
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-*, *::before, *::after {
-
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     text-decoration: none;
-    list-style: none;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-.profile-engineer-center {
+.Detail-parent-container {
+    font-family: 'Roboto', sans-serif;
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-
-.profile-engineer-theForm {
-    display: flex;
-    position: relative;
-    width: 70%;
-    height: 90%;
-    border: 1px solid rgb(160, 160, 160);
-    border-radius: 10px;
-    background-size: 400px;
-    background-repeat: no-repeat;
-    background-position: right center;
-    box-shadow: 5px 5px 13px -9px #000000;
-}
-
-.profile-engineer-left-side {
-    width: 30%;
-    height: 100%;
+.Detail-content {
+    width: 62%;
     display: flex;
     flex-direction: column;
-    box-shadow: 5px 5px 13px -9px #000000;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.Box-Prfile-engi{
+    width: 68%;
+    height: 555px;
+    border-radius: 10px;
+    display: flex;
 
-    
+    .Detail-img-container {
+        position: relative;
+        width: 381px;
+        height: 100%;
+        z-index: -1;
 
-    .profile-engineer-Foto {
-        width: 100%;
-        height: 40%;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba($color: #0424D9, $alpha: 0.3);
+        }
+    }
+}
+
+.Detail-btn-save {
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+
+    button {
+        outline: none;
+        border: none;
+        background: #0424D9;
+        border-radius: 3px;
+        padding: 8px 25px;
+        font-size: 15px;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+.Detail-section {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .logo-putih {
+        width: 165px;
+        height: 60px;
+        margin-bottom: 10px;
 
         img {
             max-width: 100%;
-        }
-
-        h2 {
-            font-size: 20px;
-            margin-top: 10px;
+            height: auto;
         }
     }
 
-    .profile-engineer-desc {
-        padding: 20px;
-        height: 60%;
-        width: 100%;
-
-        .profile-engineer-contact {
-            border-bottom: 1px solid black;
-
-            h3 {
-                font-size: 15px;
-            }
-            li {
-                padding: 10px;
-                font-size: 15px;
-            }
-        }
-
-        .profile-engineer-skill {
-            h3 {
-                margin-top: 10px;
-                font-size: 15px;
-            }
-            li {
-                padding: 10px;
-                font-size: 15px;
-            }
-        }
+    h3 {
+        color: white;
+        margin-top: 20px;
     }
 }
-
-.profile-engineer-right-side {
-    height: 100%;
-    width: 70%;
-    
-
-    .profile-engineer-about {
-        width: 100%;
-        height: 40%;
-        display: flex;
-        flex-direction: column;
-        padding-top: 20px;
-        padding-left: 20px;
-        padding-right: 20px;
-        font-size: 15px;
-        border-bottom: 2px solid black;
-
-        h3 {
-            margin-bottom: 20px;
-        }
-    }
-    .profile-engineer-hiri {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        widows: 100%;
-        height: 60%;
-
-        .profile-engineer-hiri-button {
-
-            button {
-                border: 1px solid $input-color;
-                background: $input-color;
-                color: white;
-                width: 80px;
-                height: 34px;
-                border-radius: 4px;
-                font-size: 10pt;
-                font-weight: bold;
-                cursor: pointer;
-    
-                &:hover {
-                    background: $button-color;
-                }
-            }
-        }
-    }
+.Detail-top {
+    width: 100%;
+}
+.Detailname {
+    font-size: 30px;
+}
+.Detailrule {
+    font-size: 16px;
+    color: #bbb;
 }
 
-.profile-engineer-close {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    right: 5px;
-    top: 5px;
+.Detailskil {
+    display: flex;
+    font-size: 13px;
+    color: #bbb;
+    margin-top: 5px;
 
-    img {
-        max-width: 100%;
+    h3 {
+        margin-right: 10px;
     }
 }

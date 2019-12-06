@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import style from './ProjectCompany.module.scss';
 import axios from 'axios';
+import Headers from '../../components/Header/Header';
 
 class ProjectCompany extends Component {
     constructor(props) {
@@ -8,6 +9,7 @@ class ProjectCompany extends Component {
     
         this.state = {
              dataForm: {
+                 username: 'tokopedia',
                  name: '',
                  time: '',
                  salary: '',
@@ -54,9 +56,10 @@ class ProjectCompany extends Component {
     render() {
         return (
             <div className={style.container} >
+            <Headers></Headers>
             <div className={style.center} >
                 <div className={style.projectContainer}>
-                    <h1>Project Company</h1>
+                    <h1>Create Project</h1>
                     <input type="text" onChange = {this.inputHandle} placeholder="Name Project" name="name" className={`${style.name} ${style.input}`} />
                     <input type="text" onChange = {this.inputHandle} className={`${style.waktu} ${style.input}`} name="time" placeholder="set deadline" />
                     <input type="text" onChange = {this.inputHandle} className={`${style.bayar} ${style.input}`} name="salary" placeholder="set bayar" />
