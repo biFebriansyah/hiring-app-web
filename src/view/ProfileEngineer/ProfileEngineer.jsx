@@ -3,6 +3,7 @@ import "./scss/ProfileEngineer.scss";
 import heroImg from "./img/alaska.jpg";
 import Headers from '../../components/Header/Header';
 import CardProject from '../../components/cardProject/CardProject';
+import {connect} from 'react-redux';
 
 
 class ProfileEngineer extends Component {
@@ -22,18 +23,18 @@ class ProfileEngineer extends Component {
             <div className="Detail-img-container">
                <div className="Detail-section">
                </div>
-               <img src={this.state.imgSrc} alt="hero-img" ref={this.img} />
+               <img src={this.props.dataUser.photo} alt="hero-img" ref={this.img} />
             </div>
             <div className="Detail-content Detailname">
                <div className="Detail-top">
                   <div className="Detail-engineer">
-                     <h2>Alaska</h2>
+                     <h2>{this.props.dataUser.name}</h2>
                   </div>
                   <div className="Detail-engineer Detailrule">
                      <h3>Desktop Developer</h3>
                   </div>
                   <div className="Detail-engineer Detailskil">
-                     <h3>Javasript</h3>
+                     <h3>{this.props.dataUser.skill}</h3>
                   </div>
                </div>
                <CardProject></CardProject>
@@ -46,4 +47,10 @@ class ProfileEngineer extends Component {
    }
 }
 
-export default ProfileEngineer;
+const mapStateToProps = state => {
+   return {
+      dataUser: state.data.userData
+   }
+ }
+
+export default connect(mapStateToProps)(ProfileEngineer);

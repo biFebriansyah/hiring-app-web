@@ -14,7 +14,6 @@ class Company extends Component {
          userData: {
             username: this.props.match.params.username,
             name: '',
-            email: '',
             telp: '',
             location: '',
          }
@@ -47,7 +46,6 @@ class Company extends Component {
    setData () {
       this.userFrom.append('username', this.state.userData.username);
       this.userFrom.append('name', this.state.userData.name);
-      this.userFrom.append('email', this.state.userData.email);
       this.userFrom.append('telp', this.state.userData.telp);
       this.userFrom.append('location', this.state.userData.location);
       this.userFrom.append('photo', this.state.files);
@@ -124,9 +122,8 @@ class Company extends Component {
                   <div className="Engineer-input-name Engineer-putin">
                      <input type="text" name="name" placeholder="Company name" onChange={this.handleChange} />
                   </div>
-                  <div className="Engineer-inputDob Engineer-putin companyEmailTelp">
-                     <input type="text" name='email' onChange={this.handleChange} placeholder='email' className='Companyemail'/>
-                     <input type="text" name='telp' onChange={this.handleChange} placeholder='telp'/>
+                  <div className="Engineer-input-name Engineer-putin">
+                     <input type="text" name="telp" placeholder="No. Telp" onChange={this.handleChange} />
                   </div>
                   <div className="Engineer-input-name Engineer-putin">
                      <input type="text" name="location" placeholder="location" onChange={this.handleChange} />

@@ -16,6 +16,12 @@ export class DetailEngineer extends Component {
             imgSrc: heroImg,
             data: {}
         }
+        this.hireMe = this.hireMe.bind(this);
+    }
+
+    hireMe(event){
+      this.props.history.push('/hiring/'+this.state.username);
+      event.preventDefault();
     }
 
     componentDidMount () {
@@ -92,7 +98,7 @@ export class DetailEngineer extends Component {
                      </div>
                   </div> */}
                   <div className="Detail-btn-save">
-                     <button>Hiri Me</button>
+                     <button onClick={this.hireMe} >Hiri Me</button>
                   </div>
                </div>
             </div>

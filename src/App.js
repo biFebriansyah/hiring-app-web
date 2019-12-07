@@ -12,6 +12,7 @@ import ProjectCompany from './view/ProjectCompany/ProjectCompany'
 import ProfileCompany from "./view/ProfileCompany/ProfileCompany";
 import DetailEngineer from "./view/DetailEngineer/DetailEngineer";
 import Test from "./view/test/Test";
+import Hiring from "./view/FormHiring/FormHiring";
 
 class App extends Component {
    render() {
@@ -24,7 +25,8 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/engineer/:username" component={RegisterEngineer} />
             <Route exact path="/company/:username" component={RegisterCompany} />
-            <ProtectedRoute exact path="/create" component={ProjectCompany} />
+            <ProtectedRoute exact path="/create/:username" component={ProjectCompany} />
+            <ProtectedRoute exact path="/hiring/:username" component={Hiring} />
             <ProtectedRoute exact path="/test" component={Test} />
             <ProtectedRoute exact path="/profilec/:username" component={ProfileCompany} />
             <ProtectedRoute exact path="/Detail/:username" component={DetailEngineer} />

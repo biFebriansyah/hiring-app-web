@@ -14,7 +14,7 @@ class ProfileCompany extends Component {
     }
 
     handleClick (event) {
-      this.props.history.push('/create');
+      this.props.history.push('/create/'+this.props.dataUser.username);
       event.preventDefault();
     }
     
