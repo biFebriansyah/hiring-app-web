@@ -33,7 +33,7 @@ class ProjectCompany extends Component {
     submiting (event) {
         axios({
             method: 'post',
-            url: 'http://localhost:4000/project',
+            url: 'http://54.146.201.237:5000/project',
             headers: {'Content-Type': 'application/json'},
             data: this.state.dataForm
          }).then(res => {

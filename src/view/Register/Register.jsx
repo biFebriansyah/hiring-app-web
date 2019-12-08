@@ -39,7 +39,7 @@ class Regiester extends Component {
    async onsubmit(event) {
       axios({
          method: "post",
-         url: "http://localhost:4000/register",
+         url: "http://54.146.201.237:5000/register",
          headers: { "Content-Type": "application/json" },
          data: this.state.formData
       })

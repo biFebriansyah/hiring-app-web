@@ -27,7 +27,7 @@ export class DetailEngineer extends Component {
     componentDidMount () {
       axios({
          method: 'get',
-         url: 'http://localhost:4000/engineer/' + this.state.username,
+         url: 'http://54.146.201.237:4000/engineer/' + this.state.username,
          headers: {'Content-Type': 'application/json'},
 
       }).then(res => {

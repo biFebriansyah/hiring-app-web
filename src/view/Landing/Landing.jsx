@@ -45,7 +45,7 @@ class Landing extends Component {
    componentDidMount() {
       axios({
          method: 'get',
-         url: 'http://localhost:4000/engineer',
+         url: 'http://54.146.201.237:4000/engineer',
          headers: {'Content-Type': 'application/json'}
 
       }).then(res => {

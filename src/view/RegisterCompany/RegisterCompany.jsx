@@ -76,7 +76,7 @@ class Company extends Component {
       this.setData();
       axios({
          method: 'post',
-         url: 'http://localhost:4000/company',
+         url: 'http://54.146.201.237:5000/company',
          headers: {'content-type': 'multipart/form-data'},
          data: this.userFrom
       }).then(res => {
