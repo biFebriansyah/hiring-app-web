@@ -9,22 +9,15 @@ const initialState = {
     switch(action.type) {
       case 'GET_USER_PENDING':
         return {
-          ...state,
-          // isLoading: true,
-          // isRejected: false,
-          // isFulfilled: false
+          ...state
         }
       case 'GET_USER_REJECTED':
         return {
-          ...state,
-          // isLoading: false,
-          // isRejected: true
+          ...state
         }
       case 'GET_USER_FULFILLED':
         return {
           ...state,
-          // isLoading: false,
-          // isFulfilled: true,
           userData: action.payload.data.result[0][0]
         }
       default:

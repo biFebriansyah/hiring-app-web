@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {ProtectedRoute} from './auth/ProtectRoute'
+import {ProtectedRoute} from './auth/ProtectRoute';
+import './App.css';
 import Welcome from './view/Welcome/Welcome';
 import Login from './view/Login/Login';
 import Register from './view/Register/Register';

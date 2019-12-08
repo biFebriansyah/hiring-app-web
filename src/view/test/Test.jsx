@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import './style.scss'
-
+import React, { Component, Fragment } from "react";
+import style from "./scss/style.module.scss";
+import Header from '../../components/Header/Header';
 
 class Test extends Component {
-
-
-    render() {
-       return (
-          <div>
-             <h2>Hello world</h2>
-          </div>
-       )
-    }
+   render() {
+      return (
+         <Fragment>
+            <Header></Header>
+            <div className={style.container}>
+            </div>
+         </Fragment>
+      )
+   }
 }
 
-export default Test
-
+export default Test;
